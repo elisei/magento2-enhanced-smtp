@@ -119,10 +119,10 @@ class LogsRepository implements LogsRepositoryInterface
             $this->addFilterGroupToCollection($group, $collection);
         }
 
-        $sortOrders = $searchCriteria->getSortOrders();
-        if ($sortOrders === null) {
-            $sortOrders = [];
-        }
+        
+
+        $sortOrders = [];
+        
         /** @var \Magento\Framework\Api\SortOrder $sortOrder */
         foreach ($sortOrders as $sortOrder) {
             $field = $sortOrder->getField();
