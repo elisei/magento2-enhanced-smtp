@@ -119,8 +119,18 @@ class LogsRepository implements LogsRepositoryInterface
             $this->addFilterGroupToCollection($group, $collection);
         }
 
-        
-
+        // $sortOrders = $searchCriteria->getSortOrders();
+        // if ($sortOrders === null) {
+            $sortOrders = ['created_at'];
+        // }
+        /** @var \Magento\Framework\Api\SortOrder $sortOrder */
+        foreach ($sortOrders as $sortOrder) {
+            $field = $sortOrder->getField();
+            $collection->addOrder(
+                $field,
+                ($sortOrder->getDirection() == SortOrder::SORT_ASC) ? 'ASC' : 'DESC'
+            );
+        }
 
         $searchResults = $this->searchResultsFactory->create();
         $searchResults->setSearchCriteria($searchCriteria);
